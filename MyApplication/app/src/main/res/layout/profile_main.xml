@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:background="@color/achtergrond"
+    tools:showIn="@layout/activity_main"
+    tools:context=".View.Profile">
+
+    <TextView
+        android:id="@+id/imageView3"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Profile"
+        android:textSize="50sp"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:layout_marginBottom="30dp"/>
+
+    <TextView
+        android:id="@+id/firstnameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Firstname:"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:layout_below="@+id/imageView3"
+        android:layout_marginBottom="@dimen/editText_margin"/>
+
+    <EditText
+        android:id="@+id/edittextFirstname"
+        android:layout_width="@dimen/editText_width"
+        android:layout_height="@dimen/editText_height"
+        android:hint="Firstname"
+        android:inputType="text"
+        android:singleLine="true"
+        android:background="@drawable/rounded_edittext"
+        android:layout_marginLeft="@dimen/editText_margin"
+        android:layout_toRightOf="@+id/firstnameTextView"
+        android:layout_below="@+id/imageView3"
+        android:gravity="center"
+        android:layout_marginBottom="@dimen/editText_margin"/>
+
+    <TextView
+        android:id="@+id/lastnameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Lastname:"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:layout_below="@+id/edittextFirstname"
+        android:layout_marginBottom="@dimen/editText_margin"/>
+
+    <EditText
+        android:id="@+id/edittextLastname"
+        android:layout_width="@dimen/editText_width"
+        android:layout_height="@dimen/editText_height"
+        android:gravity="center"
+        android:hint="Lastname"
+        android:inputType="text"
+        android:singleLine="true"
+        android:background="@drawable/rounded_edittext"
+        android:layout_marginLeft="@dimen/editText_margin"
+        android:layout_toRightOf="@+id/lastnameTextView"
+        android:layout_below="@+id/edittextFirstname"
+        android:layout_marginBottom="@dimen/editText_margin"/>
+
+    <TextView
+        android:id="@+id/emailTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Email:"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:layout_below="@+id/edittextLastname"
+        android:layout_marginBottom="@dimen/editText_margin"/>
+
+    <EditText
+        android:id="@+id/edittextEmail"
+        android:layout_width="@dimen/editText_width"
+        android:layout_height="@dimen/editText_height"
+        android:gravity="center"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        android:singleLine="true"
+        android:background="@drawable/rounded_edittext"
+        android:layout_marginLeft="@dimen/editText_margin"
+        android:layout_toRightOf="@+id/emailTextView"
+        android:layout_below="@+id/edittextLastname"
+        android:layout_marginBottom="@dimen/editText_margin"/>
+
+    <TextView
+        android:id="@+id/oldPasswordTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Old password:"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:layout_below="@+id/edittextEmail"
+        android:layout_marginBottom="@dimen/editText_margin"/>
+
+    <EditText
+        android:id="@+id/edittextOldPassword"
+        android:layout_width="@dimen/editText_width"
+        android:layout_height="@dimen/editText_height"
+        android:gravity="center"
+        android:hint="Old password"
+        android:inputType="textPassword"
+        android:singleLine="true"
+        android:background="@drawable/rounded_edittext"
+        android:layout_marginLeft="@dimen/editText_margin"
+        android:layout_toRightOf="@+id/oldPasswordTextView"
+        android:layout_below="@+id/edittextEmail"
+        android:layout_marginBottom="@dimen/editText_margin"/>
+
+    <TextView
+        android:id="@+id/newPasswordTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New password:"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:layout_below="@+id/edittextOldPassword"
+        android:layout_marginBottom="@dimen/editText_margin"/>
+
+    <EditText
+        android:id="@+id/edittextNewPassword"
+        android:layout_width="@dimen/editText_width"
+        android:layout_height="@dimen/editText_height"
+        android:gravity="center"
+        android:hint="New password"
+        android:inputType="textPassword"
+        android:singleLine="true"
+        android:background="@drawable/rounded_edittext"
+        android:layout_marginLeft="@dimen/editText_margin"
+        android:layout_toRightOf="@+id/newPasswordTextView"
+        android:layout_below="@+id/edittextOldPassword"
+        android:layout_marginBottom="@dimen/editText_margin"/>
+
+    <TextView
+        android:id="@+id/repeatNewPasswordTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Repeat new password:"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:layout_below="@+id/edittextNewPassword"
+        android:layout_marginBottom="@dimen/editText_margin"/>
+
+    <EditText
+        android:id="@+id/edittextRepeatNewPassword"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/editText_height"
+        android:gravity="center"
+        android:hint="Repeat new password"
+        android:inputType="textPassword"
+        android:singleLine="true"
+        android:background="@drawable/rounded_edittext"
+        android:layout_marginLeft="@dimen/editText_margin"
+        android:layout_below="@+id/repeatNewPasswordTextView"
+        android:layout_marginBottom="@dimen/editText_margin"/>
+
+    <Button
+        android:id="@+id/registerButton"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/editText_height"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/edittextRepeatNewPassword"
+        android:layout_gravity="center"
+        android:text="Save"
+        android:background="@drawable/rounded_button"
+        android:layout_marginBottom="@dimen/editText_margin"/>
+
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:itemBackground="@color/achtergrond"
+        app:itemIconTint="@color/white"
+        app:itemTextColor="@color/white"
+        app:menu="@menu/bottom_navigation_main" />
+
+
+</RelativeLayout>

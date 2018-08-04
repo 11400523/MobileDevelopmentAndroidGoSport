@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:background="@color/achtergrond"
+    tools:showIn="@layout/activity_main"
+    tools:context=".View.Home">
+
+    <TextView
+        android:id="@+id/simpleTextView"
+        android:layout_alignParentTop="true"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Events"
+        android:textSize="50sp"
+        android:gravity="center_horizontal"
+        android:textColor="@color/white"/>
+
+    <!--<Button
+        android:id="@+id/makeEventButton"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/editText_height"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/simpleTextView"
+        android:layout_gravity="center"
+        android:text="Make a new event"
+        android:background="@drawable/rounded_button"
+        android:layout_marginBottom="@dimen/editText_margin"/>-->
+
+    <ListView
+        android:id="@+id/listViewExample"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/simpleTextView"
+        />
+
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="20dp"
+        app:itemBackground="@color/achtergrond"
+        app:itemIconTint="@color/white"
+        app:itemTextColor="@color/white"
+        app:menu="@menu/bottom_navigation_main"
+        />
+
+</RelativeLayout>
