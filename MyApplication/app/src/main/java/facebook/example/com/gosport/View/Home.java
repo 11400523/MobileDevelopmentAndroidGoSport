@@ -1,16 +1,26 @@
 package facebook.example.com.gosport.View;
 
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.text.InputType;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TimePicker;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import facebook.example.com.gosport.Adapter.EventInformationAdapter;
 import facebook.example.com.gosport.Class.EventInformation;
@@ -21,15 +31,12 @@ import facebook.example.com.gosport.SqlLite.DBHandler;
 public class Home extends AppCompatActivity {
     int userID;
     final DBHandler db = new DBHandler(this);
-    //private ListView lstResult;
     private BottomNavigationView bottomNavigationView;
     private ArrayList<EventInformation> listAllEvents;
     private static EventInformationAdapter adapter;
-    //private Button makeEvent;
+    private Button makeEvent;
     private int mYear, mMonth, mDay, mHour, mMinute;
-    private String txtDate;
-    private String txtTime;
-    final String[] returnvalue = new String[1];
+    private EventInformation createEvent = new EventInformation();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,12 +46,8 @@ public class Home extends AppCompatActivity {
         userID = getIntent().getExtras().getInt("user");
         RegisterUser logedInUser = db.getUserRegister(userID);
         listAllEvents = db.getAllEvents();
-        //userTextview.setText(logedInUser.getFirstName() + logedInUser.getLastName() + logedInUser.getId());
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
-        //final SwipeRefreshLayout mySwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swiperefresh);
-        //final Activity ShowResults = this;
-        //lstResult = (ListView) findViewById(R.id.lstResult);
-        //makeEvent = (Button) findViewById(R.id.makeEventButton);
+        makeEvent = (Button) findViewById(R.id.makeEventButton);
 
 
         bottomNavigationView.setOnNavigationItemSelectedListener(
@@ -82,25 +85,107 @@ public class Home extends AppCompatActivity {
             }
         });
 
-        /*makeEvent.setOnClickListener(
+        makeEvent.setOnClickListener(
                 new View.OnClickListener() {
                     public void onClick(View view) {
-
-                        AsyncTaskTime time = new AsyncTaskTime();
-                        time.execute(new String testtest);
-
-
-                            //String date = getDate();
-
-
-
+                        CreateNewEvent();
                         }
-
-                });*/
+                });
     }
 
-    /*public String getDate(){
-        final String[] returnvalue = new String[1];
+    public void CreateNewEvent(){
+        AlertDialog.Builder alertBuilder = new AlertDialog.Builder(Home.this);
+        alertBuilder.setTitle("Event name");
+
+        final EditText input = new EditText(Home.this);
+        input.setInputType(InputType.TYPE_CLASS_TEXT);
+        input.setHint("EventName");
+        input.setMaxLines(1);
+        alertBuilder.setView(input);
+
+        alertBuilder.setPositiveButton("Save", new DialogInterface.OnClickListener() {
+            //                    @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                final String[] eventName = new String[1];
+                eventName[0] = input.getText().toString();
+                createEvent.setEventName(eventName[0]);
+                getLocation();
+            }
+        });
+
+        alertBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.cancel();
+            }
+        });
+        AlertDialog dialog = alertBuilder.create();
+        dialog.show();
+    }
+
+    public  void getLocation(){
+        AlertDialog.Builder alertBuilder = new AlertDialog.Builder(Home.this);
+        alertBuilder.setTitle("Location");
+
+        final EditText input = new EditText(Home.this);
+        input.setInputType(InputType.TYPE_CLASS_TEXT);
+        input.setHint("Location");
+        input.setMaxLines(1);
+        alertBuilder.setView(input);
+
+        alertBuilder.setPositiveButton("Save", new DialogInterface.OnClickListener() {
+            //                    @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                final String[] location = new String[1];
+                location[0] = input.getText().toString();
+                createEvent.setLocation(location[0]);
+                getExtraInfo();
+            }
+        });
+
+        alertBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.cancel();
+            }
+        });
+        AlertDialog dialog = alertBuilder.create();
+        dialog.show();
+    }
+
+    public void getExtraInfo(){
+        AlertDialog.Builder alertBuilder = new AlertDialog.Builder(Home.this);
+        alertBuilder.setTitle("Extra information");
+
+        final EditText input = new EditText(Home.this);
+        input.setInputType(InputType.TYPE_CLASS_TEXT);
+        input.setHint("Extra info");
+        //input.setMaxLines(1);
+        alertBuilder.setView(input);
+
+        alertBuilder.setPositiveButton("Save", new DialogInterface.OnClickListener() {
+            //                    @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                final String[] info = new String[1];
+                info[0] = input.getText().toString();
+                createEvent.setExtraInfo(info[0]);
+                getDate();
+            }
+        });
+
+        alertBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.cancel();
+            }
+        });
+        AlertDialog dialog = alertBuilder.create();
+        dialog.show();
+    }
+
+
+    public void getDate(){
+        //final String[] returnvalue = new String[1];
         // Get Current Date
         final Calendar c = Calendar.getInstance();
         mYear = c.get(Calendar.YEAR);
@@ -112,39 +197,40 @@ public class Home extends AppCompatActivity {
                     @Override
                     public void onDateSet(DatePicker view, int year,
                                           int monthOfYear, int dayOfMonth) {
-                        returnvalue[0] = dayOfMonth + "-" + (monthOfYear + 1) + "-" + year;
+                        //returnvalue[0] = dayOfMonth + "-" + (monthOfYear + 1) + "-" + year;
+                        createEvent.setYear(year);
+                        createEvent.setMonth(monthOfYear + 1);
+                        createEvent.setDay(dayOfMonth);
+                        getTime();
                     }
                 }, mYear, mMonth, mDay);
         datePickerDialog.show();
-        return returnvalue[0];
     }
 
-    private class AsyncTaskTime extends AsyncTask {
+    public void getTime(){
+        final Calendar k = Calendar.getInstance();
+        mHour = k.get(Calendar.HOUR_OF_DAY);
+        mMinute = k.get(Calendar.MINUTE);
 
-        @Override
-        protected String doInBackground(Object[] objects) {
-            // Get Current Time
+        // Launch Time Picker Dialog
+        TimePickerDialog timePickerDialog = new TimePickerDialog(Home.this,
+                new TimePickerDialog.OnTimeSetListener() {
 
-            final Calendar k = Calendar.getInstance();
-            mHour = k.get(Calendar.HOUR_OF_DAY);
-            mMinute = k.get(Calendar.MINUTE);
+                    @Override
+                    public void onTimeSet(TimePicker view, int hourOfDay,
+                                          int minute) {
+                        createEvent.setHour(hourOfDay);
+                        createEvent.setMinute(minute);
+                        makeEvent();
+                    }
+                }, mHour, mMinute, false);
+        timePickerDialog.show();
+    }
 
-            // Launch Time Picker Dialog
-            TimePickerDialog timePickerDialog = new TimePickerDialog(Home.this,
-                    new TimePickerDialog.OnTimeSetListener() {
-
-                        @Override
-                        public void onTimeSet(TimePicker view, int hourOfDay,
-                                              int minute) {
-
-                            returnvalue[0] = hourOfDay + ":" + minute;
-                        }
-                    }, mHour, mMinute, false);
-            timePickerDialog.show();
-            return returnvalue[0];
-        }
-
-    }*/
-
+    public void makeEvent(){
+        EventInformation e = createEvent;
+        db.addEvent(createEvent);
+        recreate();
+    }
 }
 

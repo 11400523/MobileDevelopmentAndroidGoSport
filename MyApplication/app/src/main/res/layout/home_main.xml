@@ -20,7 +20,7 @@
         android:gravity="center_horizontal"
         android:textColor="@color/white"/>
 
-    <!--<Button
+    <Button
         android:id="@+id/makeEventButton"
         android:layout_width="fill_parent"
         android:layout_height="@dimen/editText_height"
@@ -30,13 +30,13 @@
         android:layout_gravity="center"
         android:text="Make a new event"
         android:background="@drawable/rounded_button"
-        android:layout_marginBottom="@dimen/editText_margin"/>-->
+        android:layout_marginBottom="@dimen/editText_margin"/>
 
     <ListView
         android:id="@+id/listViewExample"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/simpleTextView"
+        android:layout_below="@id/makeEventButton"
         />
 
     <android.support.design.widget.BottomNavigationView
