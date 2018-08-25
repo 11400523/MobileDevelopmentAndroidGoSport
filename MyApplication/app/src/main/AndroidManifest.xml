@@ -24,11 +24,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".View.RegisterAccount" />
-        <activity android:name=".View.Home" />
-        <activity android:name=".View.CalendarEvents" />
-        <activity android:name=".View.Profile" />
-        <activity android:name=".View.Event" />
+        <activity android:name=".View.RegisterAccountActivity" />
+        <activity android:name=".View.HomeActivity" />
+        <activity android:name=".View.CalendarEventsActivity" />
+        <activity android:name=".View.ProfileActivity" />
+        <activity android:name=".View.EventActivity" />
+        <activity android:name=".View.SignInActivity" />
+        <activity android:name=".View.NewEventActivity"/>
     </application>
 
 </manifest>

@@ -55,34 +55,27 @@
         android:layout_alignParentStart="true"
         android:layout_below="@+id/edittextPassword"
         android:layout_gravity="center"
-        android:text="Sign Up"
+        android:text="Sign up"
         android:background="@drawable/rounded_button"
         android:layout_marginBottom="@dimen/editText_margin"/>
 
-    <!--<com.facebook.login.widget.LoginButton
-        android:id="@+id/fbButton"
+    <Button
+        android:id="@+id/loginGoogleButton"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_gravity="center_horizontal"
-        android:layout_below="@+id/loginButton"
+        android:layout_height="@dimen/editText_height"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:background="@drawable/rounded_fbbutton"
+        android:layout_below="@+id/loginButton"
+        android:layout_gravity="center"
+        android:text="Sign up with Google"
+        android:background="@drawable/rounded_button"
         android:layout_marginBottom="@dimen/editText_margin"/>
-
-
-    <TextView
-        android:id="@+id/tv_LoginResult"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/fbButton"
-        android:visibility="invisible"/>-->
 
     <TextView
         android:id="@+id/txtRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/loginButton"
+        android:layout_below="@+id/loginGoogleButton"
         android:layout_gravity="center"
         android:autoLink="email"
         android:gravity="bottom"

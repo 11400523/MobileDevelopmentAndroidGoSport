@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:background="@color/achtergrond"
+    tools:showIn="@layout/activity_main"
+    tools:context=".View.NewEventActivity">
+
+    <TextView
+        android:id="@+id/imageView3"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="New event"
+        android:textSize="50sp"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:layout_marginBottom="30dp"/>
+
+    <TextView
+        android:id="@+id/eventnameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="EventName:"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:layout_below="@+id/imageView3"
+        android:layout_marginBottom="@dimen/editText_margin"/>
+
+    <EditText
+        android:id="@+id/edittextEventName"
+        android:layout_width="@dimen/editText_width"
+        android:layout_height="@dimen/editText_height"
+        android:hint="EventName"
+        android:inputType="text"
+        android:singleLine="true"
+        android:background="@drawable/rounded_edittext"
+        android:layout_marginLeft="@dimen/editText_margin"
+        android:layout_toRightOf="@+id/eventnameTextView"
+        android:layout_below="@+id/imageView3"
+        android:gravity="center"
+        android:layout_marginBottom="@dimen/editText_margin"/>
+
+    <TextView
+        android:id="@+id/locationTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Location:"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:layout_below="@+id/edittextEventName"
+        android:layout_marginBottom="@dimen/editText_margin"/>
+
+    <EditText
+        android:id="@+id/edittextLocation"
+        android:layout_width="@dimen/editText_width"
+        android:layout_height="@dimen/editText_height"
+        android:gravity="center"
+        android:hint="Location"
+        android:inputType="text"
+        android:singleLine="true"
+        android:background="@drawable/rounded_edittext"
+        android:layout_marginLeft="@dimen/editText_margin"
+        android:layout_toRightOf="@+id/locationTextView"
+        android:layout_below="@+id/edittextEventName"
+        android:layout_marginBottom="@dimen/editText_margin"/>
+
+    <TextView
+        android:id="@+id/infoTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Extra information:"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:layout_below="@+id/edittextLocation"
+        android:layout_marginBottom="@dimen/editText_margin"/>
+
+    <EditText
+        android:id="@+id/edittextInfo"
+        android:layout_width="@dimen/editText_width"
+        android:layout_height="@dimen/editText_height"
+        android:gravity="center"
+        android:hint="Info"
+        android:inputType="text"
+        android:singleLine="true"
+        android:background="@drawable/rounded_edittext"
+        android:layout_marginLeft="@dimen/editText_margin"
+        android:layout_toRightOf="@+id/infoTextView"
+        android:layout_below="@+id/edittextLocation"
+        android:layout_marginBottom="@dimen/editText_margin"/>
+
+    <TextView
+        android:id="@+id/dateTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Date:"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:layout_below="@+id/edittextInfo"
+        android:layout_marginBottom="@dimen/editText_margin"
+        android:layout_marginRight="100dp"/>
+
+
+    <Button
+        android:id="@+id/dateButton"
+        android:layout_width="400dp"
+        android:layout_height="@dimen/editText_height"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/edittextInfo"
+        android:layout_gravity="center"
+        android:text="Choose a date"
+        android:background="@drawable/rounded_button"
+        android:layout_marginLeft="60dp"
+        android:layout_marginBottom="10dp"
+        android:layout_toRightOf="@+id/dateTextView"/>
+
+    <Button
+        android:id="@+id/registerButton"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/editText_height"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/dateButton"
+        android:layout_gravity="center"
+        android:text="Save"
+        android:background="@drawable/rounded_button"
+        android:layout_marginBottom="@dimen/editText_margin"
+        android:enabled="false"/>
+
+
+</RelativeLayout>

@@ -7,7 +7,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     tools:showIn="@layout/activity_main"
-    tools:context=".View.CalendarEvents"
+    tools:context=".View.CalendarEventsActivity"
     android:background="@color/achtergrond"
     android:id="@+id/main_content"
     android:animateLayoutChanges="true">
@@ -22,16 +22,6 @@
         android:gravity="center_horizontal"
         android:textColor="@color/white"/>
 
-    <!--<CalendarView
-        android:id="@+id/calendarView"
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:layout_marginBottom="16dp"
-        android:layout_below="@+id/simpleTextView"
-        android:theme="@style/CalenderViewCustom"
-        android:dateTextAppearance="@style/CalenderViewDateCustomText"
-        android:weekDayTextAppearance="@style/CalenderViewWeekCustomText"/>-->
-
 
     <android.support.v4.view.ViewPager
         android:id="@+id/pager"
@@ -42,82 +32,6 @@
         android:layout_marginBottom="20dp"
         android:layout_below="@id/simpleTextView"
     />
-
-
-    <!--<modev.librarycalendar.CompactCalendarView
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/compactcalendar_view"
-        android:layout_width="fill_parent"
-        android:layout_height="250dp"
-        />
-
-    <Button
-        android:layout_below="@+id/compactcalendar_view"
-        android:layout_alignParentLeft="true"
-        android:id="@+id/prev_button"
-        android:text="Scroll Left"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-
-
-    <Button
-        android:layout_below="@+id/compactcalendar_view"
-        android:layout_alignParentRight="true"
-        android:id="@+id/next_button"
-        android:text="Scroll Right"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="fill_parent"
-        android:id="@+id/calendar_control_buttons"
-        android:layout_below="@+id/prev_button"
-        android:layout_height="wrap_content">
-
-        <Button
-            android:layout_below="@+id/compactcalendar_view"
-            android:text="Change Locale"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/set_locale" />
-
-        <Button
-            android:layout_below="@+id/compactcalendar_view"
-            android:text="Remove all events"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/remove_all_events" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="fill_parent"
-        android:id="@+id/calendar_control_buttons_2"
-        android:layout_below="@+id/calendar_control_buttons"
-        android:layout_height="wrap_content">
-
-        <Button
-            android:id="@+id/slide_calendar"
-            android:text="Slide animation"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            />
-
-        <Button
-            android:id="@+id/show_with_animation_calendar"
-            android:text="Expose animation"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            />
-    </LinearLayout>
-
-    <ListView
-        android:id="@+id/bookings_listview"
-        android:layout_below="@+id/calendar_control_buttons_2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-    </ListView>-->
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/bottom_navigation"

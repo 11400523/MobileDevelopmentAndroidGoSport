@@ -8,7 +8,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:background="@color/achtergrond"
     tools:showIn="@layout/activity_main"
-    tools:context=".View.Profile">
+    tools:context=".View.ProfileActivity">
 
     <TextView
         android:id="@+id/imageView3"

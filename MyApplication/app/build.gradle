@@ -29,4 +29,8 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation project(':facebook')
     implementation project(':librarycalendar')
+
+
+    // Dependency for Google Sign-In
+    compile 'com.google.android.gms:play-services-auth:11.6.0'
 }

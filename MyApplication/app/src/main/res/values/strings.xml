@@ -10,4 +10,6 @@
     <string name="text_calendar">My calendar</string>
     <string name="text_events">Events</string>
     <string name="text_profile">Profile</string>
+    <string name="signed_in_fmt">Signed in as: %s</string>
+    <string name="signed_out">Signed out</string>
 </resources>

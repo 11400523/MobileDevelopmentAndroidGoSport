@@ -8,7 +8,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:background="@color/achtergrond"
     tools:showIn="@layout/activity_main"
-    tools:context=".View.Home">
+    tools:context=".View.HomeActivity">
 
     <TextView
         android:id="@+id/simpleTextView"

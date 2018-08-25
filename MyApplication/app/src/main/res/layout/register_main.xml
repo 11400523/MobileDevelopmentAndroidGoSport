@@ -10,7 +10,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:background="@color/achtergrond"
     tools:showIn="@layout/activity_main"
-    tools:context=".View.RegisterAccount">
+    tools:context=".View.RegisterAccountActivity">
 
     <ImageView
         android:id="@+id/imageView3"

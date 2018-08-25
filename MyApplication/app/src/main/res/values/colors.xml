@@ -5,4 +5,6 @@
     <color name="colorAccent">#dd2e33</color>
     <color name="achtergrond">#17182a</color>
     <color name="white">#ffffff</color>
+    <color name="blue_grey_500">#607D8B</color>
+    <color name="blue_grey_900">#263238</color>
 </resources>

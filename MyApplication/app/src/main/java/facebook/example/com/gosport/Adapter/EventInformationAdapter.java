@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import facebook.example.com.gosport.Class.EventInformation;
 import facebook.example.com.gosport.R;
 import facebook.example.com.gosport.SqlLite.DBHandler;
-import facebook.example.com.gosport.View.Event;
+import facebook.example.com.gosport.View.EventActivity;
 
 public class EventInformationAdapter extends ArrayAdapter<EventInformation> implements View.OnClickListener {
     Context mContext;
@@ -38,7 +38,7 @@ public class EventInformationAdapter extends ArrayAdapter<EventInformation> impl
 
 
         if (mContext != null) {
-            Intent intent = new Intent(mContext, Event.class);
+            Intent intent = new Intent(mContext, EventActivity.class);
             intent.putExtra("event", dataModel.getId());
             intent.putExtra("user", userID);
             mContext.startActivity(intent);
