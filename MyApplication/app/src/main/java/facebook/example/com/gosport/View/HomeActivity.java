@@ -89,6 +89,7 @@ public class HomeActivity extends AppCompatActivity {
                 new View.OnClickListener() {
                     public void onClick(View view) {
                         Intent intent = new Intent(HomeActivity.this, NewEventActivity.class);
+                        intent.putExtra("user", userID);
                         startActivity(intent);
                     }
                 });

@@ -183,9 +183,9 @@ public class CompactCalendarTab extends Fragment {
                 }
                 if (eventsForCalendar.size() != 0){
                     List<Event> events = getEvents(eventsForCalendar);
-
+                    eventsForCalendar.clear();
                     compactCalendarView.addEvents(events);
-                    if(eventsForCalendar.size() == allEvents.size()){
+                    if(eventsForCalendar.size() >= allEvents.size()){
                         break;
                     }
                 }

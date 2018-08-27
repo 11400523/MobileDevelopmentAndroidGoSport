@@ -24,11 +24,14 @@ public class NewEventActivity extends AppCompatActivity {
     private EditText txtInfo;
     private int mYear, mMonth, mDay;
     private EventInformation createEvent = new EventInformation();
+    int userID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.new_event_main);
+
+        userID = getIntent().getExtras().getInt("user");
 
         btnSave = (Button) findViewById(R.id.registerButton);
         btnDate = (Button) findViewById(R.id.dateButton);
@@ -48,6 +51,7 @@ public class NewEventActivity extends AppCompatActivity {
                         createEvent.setMinute(0);
                         db.addEvent(createEvent);
                         Intent intent = new Intent(NewEventActivity.this, HomeActivity.class);
+                        intent.putExtra("user", userID);
                         startActivity(intent);
                     }
                 });
