@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name"></string>
+    <string name="action_settings">Settings</string>
+    <string name="facebook_app_id">462220717575033</string>
+    <string name="fb_login_protocol_scheme">fb462220717575033</string>
+    <string name="success_login">Success Login</string>
+    <string name="user">"User = "</string>
+    <string name="token">"Token = "</string>
+    <string name="lostpassword"><a href="layout/register_main.xml" target="_top">Make an account</a></string>
+    <string name="text_calendar">My calendar</string>
+    <string name="text_events">Events</string>
+    <string name="text_profile">Profile</string>
+    <string name="title_item_list">Items</string>
+    <string name="title_item_detail">Item Detail</string>
+</resources>
