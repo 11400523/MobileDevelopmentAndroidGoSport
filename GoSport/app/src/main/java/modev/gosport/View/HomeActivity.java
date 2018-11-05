@@ -1,26 +1,17 @@
 package modev.gosport.View;
 
-import android.app.DatePickerDialog;
-import android.app.TimePickerDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.text.InputType;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.DatePicker;
-import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TimePicker;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 
 import modev.gosport.Adapter.EventInformationAdapter;
 import modev.gosport.Class.EventInformation;
@@ -92,145 +83,5 @@ public class HomeActivity extends AppCompatActivity {
                         startActivity(intent);
                     }
                 });
-    }
-
-    public void CreateNewEvent(){
-        AlertDialog.Builder alertBuilder = new AlertDialog.Builder(HomeActivity.this);
-        alertBuilder.setTitle("Event name");
-
-        final EditText input = new EditText(HomeActivity.this);
-        input.setInputType(InputType.TYPE_CLASS_TEXT);
-        input.setHint("EventName");
-        input.setMaxLines(1);
-        alertBuilder.setView(input);
-
-        alertBuilder.setPositiveButton("Save", new DialogInterface.OnClickListener() {
-            //                    @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                final String[] eventName = new String[1];
-                eventName[0] = input.getText().toString();
-                createEvent.setEventName(eventName[0]);
-                getLocation();
-            }
-        });
-
-        alertBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                dialogInterface.cancel();
-            }
-        });
-        AlertDialog dialog = alertBuilder.create();
-        dialog.show();
-    }
-
-    public  void getLocation(){
-        AlertDialog.Builder alertBuilder = new AlertDialog.Builder(HomeActivity.this);
-        alertBuilder.setTitle("Location");
-
-        final EditText input = new EditText(HomeActivity.this);
-        input.setInputType(InputType.TYPE_CLASS_TEXT);
-        input.setHint("Location");
-        input.setMaxLines(1);
-        alertBuilder.setView(input);
-
-        alertBuilder.setPositiveButton("Save", new DialogInterface.OnClickListener() {
-            //                    @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                final String[] location = new String[1];
-                location[0] = input.getText().toString();
-                createEvent.setLocation(location[0]);
-                getExtraInfo();
-            }
-        });
-
-        alertBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                dialogInterface.cancel();
-            }
-        });
-        AlertDialog dialog = alertBuilder.create();
-        dialog.show();
-    }
-
-    public void getExtraInfo(){
-        AlertDialog.Builder alertBuilder = new AlertDialog.Builder(HomeActivity.this);
-        alertBuilder.setTitle("Extra information");
-
-        final EditText input = new EditText(HomeActivity.this);
-        input.setInputType(InputType.TYPE_CLASS_TEXT);
-        input.setHint("Extra info");
-        //input.setMaxLines(1);
-        alertBuilder.setView(input);
-
-        alertBuilder.setPositiveButton("Save", new DialogInterface.OnClickListener() {
-            //                    @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                final String[] info = new String[1];
-                info[0] = input.getText().toString();
-                createEvent.setExtraInfo(info[0]);
-                getDate();
-            }
-        });
-
-        alertBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                dialogInterface.cancel();
-            }
-        });
-        AlertDialog dialog = alertBuilder.create();
-        dialog.show();
-    }
-
-
-    public void getDate(){
-        //final String[] returnvalue = new String[1];
-        // Get Current Date
-        final Calendar c = Calendar.getInstance();
-        mYear = c.get(Calendar.YEAR);
-        mMonth = c.get(Calendar.MONTH);
-        mDay = c.get(Calendar.DAY_OF_MONTH);
-        DatePickerDialog datePickerDialog = new DatePickerDialog(HomeActivity.this,
-                new DatePickerDialog.OnDateSetListener() {
-
-                    @Override
-                    public void onDateSet(DatePicker view, int year,
-                                          int monthOfYear, int dayOfMonth) {
-                        //returnvalue[0] = dayOfMonth + "-" + (monthOfYear + 1) + "-" + year;
-                        createEvent.setYear(year);
-                        createEvent.setMonth(monthOfYear + 1);
-                        createEvent.setDay(dayOfMonth);
-                        getTime();
-                    }
-                }, mYear, mMonth, mDay);
-        datePickerDialog.show();
-    }
-
-    public void getTime(){
-        final Calendar k = Calendar.getInstance();
-        mHour = k.get(Calendar.HOUR_OF_DAY);
-        mMinute = k.get(Calendar.MINUTE);
-
-        // Launch Time Picker Dialog
-        TimePickerDialog timePickerDialog = new TimePickerDialog(HomeActivity.this,
-                new TimePickerDialog.OnTimeSetListener() {
-
-                    @Override
-                    public void onTimeSet(TimePicker view, int hourOfDay,
-                                          int minute) {
-                        createEvent.setHour(hourOfDay);
-                        createEvent.setMinute(minute);
-                        makeEvent();
-                    }
-                }, mHour, mMinute, false);
-        timePickerDialog.show();
-    }
-
-    public void makeEvent(){
-        EventInformation e = createEvent;
-        db.addEvent(createEvent);
-        recreate();
     }
 }

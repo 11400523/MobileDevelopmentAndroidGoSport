@@ -1,6 +1,8 @@
 package modev.gosport.View;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -10,6 +12,7 @@ import android.widget.EditText;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import modev.gosport.Class.Dialog;
 import modev.gosport.Class.RegisterUser;
 import modev.gosport.R;
 
@@ -35,19 +38,54 @@ public class RegisterAccountActivity extends AppCompatActivity {
         btnRegister.setOnClickListener(
                 new View.OnClickListener() {
                     public void onClick(View view) {
-                        DatabaseReference databaseArtist;
-                        databaseArtist = FirebaseDatabase.getInstance().getReference("user");
-
-                        String id = databaseArtist.push().getKey();
-
-                        RegisterUser user = new RegisterUser(txtFirstname.getText().toString(),txtLastname.getText().toString(), txtEmail.getText().toString(), txtPassword.getText().toString());
-                        user.setId(id);
-                        databaseArtist.child(id).setValue(user);
-
-                        Intent intent = new Intent(RegisterAccountActivity.this, HomeActivity.class);
-                        intent.putExtra("user", id);
-                        startActivity(intent);
+                        RegisterAccountActivity.AsyncTaskRunner runner = new RegisterAccountActivity.AsyncTaskRunner();
+                        runner.execute(txtFirstname.getText().toString(),txtLastname.getText().toString(), txtEmail.getText().toString(), txtPassword.getText().toString());
                     }
                 });
+    }
+
+    private class AsyncTaskRunner extends AsyncTask<String, String, String> {
+
+        private String resp;
+        ProgressDialog progressDialog;
+
+        @Override
+        protected void onPostExecute(String result) {
+            // execution of result of Long time consuming operation
+            progressDialog.dismiss();
+            if (result != null){
+                Dialog d = new Dialog("", result, RegisterAccountActivity.this);
+                d.dialogOK();
+            }
+        }
+
+        @Override
+        protected String doInBackground(String... strings) {
+            try {
+                DatabaseReference databaseArtist;
+                databaseArtist = FirebaseDatabase.getInstance().getReference("user");
+
+                String id = databaseArtist.push().getKey();
+
+                RegisterUser user = new RegisterUser(strings[0], strings[1], strings[2], strings[3]);
+                user.setId(id);
+                databaseArtist.child(id).setValue(user);
+
+                Intent intent = new Intent(RegisterAccountActivity.this, HomeActivity.class);
+                intent.putExtra("user", id);
+                startActivity(intent);
+            } catch (Exception e) {
+                e.printStackTrace();
+                resp = e.getMessage();
+            }
+            return resp;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            progressDialog = ProgressDialog.show(RegisterAccountActivity.this,
+                    "logging in",
+                    "Wait a moment");
+        }
     }
 }

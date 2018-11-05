@@ -14,13 +14,12 @@ import modev.gosport.Class.EventInformation;
 public class DBHandler extends SQLiteOpenHelper {
 
     // Database Version
-    private static final int DATABASE_VERSION = 6;
+    private static final int DATABASE_VERSION = 8;
 
     // Database Name
     private static final String DATABASE_NAME = "goSport";
 
     // Contacts table name
-    private static final String TABLE_USERS = "users";
     private static final String TABLE_EVENTS = "events";
     private static final String TABLE_USERPEREVENT = "userperevent";
 
@@ -55,14 +54,13 @@ public class DBHandler extends SQLiteOpenHelper {
         db.execSQL(CREATE_EVENTS_TABLE);
         String CREATE_USEREVENT_TABLE = "CREATE TABLE " + TABLE_USERPEREVENT + "("
                 + KEY_USERPEREVENT_ID + " INTEGER PRIMARY KEY," + KEY_USERPEREVENT_EVENT + " INTEGER,"
-                + KEY_USERPEREVENT_USER + " INTEGER" + ")";
+                + KEY_USERPEREVENT_USER + " TEXT" + ")";
         db.execSQL(CREATE_USEREVENT_TABLE);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // Drop older table if existed
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_USERS);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_EVENTS);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_USERPEREVENT);
         // Creating tables again
@@ -169,7 +167,7 @@ public class DBHandler extends SQLiteOpenHelper {
         try{
             ArrayList<EventInformation> eventsList = new ArrayList<EventInformation>();
             // Select All Query
-            String selectQuery = "SELECT * FROM " +  TABLE_USERPEREVENT + " a inner join " + TABLE_EVENTS + " b ON a.eventid = b.id  where a.userid = " + userID + " and b.year = " + year + " AND b.month = " + month;
+            String selectQuery = "SELECT * FROM " +  TABLE_USERPEREVENT + " a inner join " + TABLE_EVENTS + " b ON a.eventid = b.id  where a.userid = " + "\"" + userID + "\"" + " and b.year = " + year + " AND b.month = " + month;
 
             SQLiteDatabase db = this.getWritableDatabase();
             Cursor cursor = db.rawQuery(selectQuery, null);
@@ -204,7 +202,7 @@ public class DBHandler extends SQLiteOpenHelper {
         try{
             ArrayList<EventInformation> eventsList = new ArrayList<EventInformation>();
             // Select All Query
-            String selectQuery = "SELECT * FROM " +  TABLE_USERPEREVENT + " a inner join " + TABLE_EVENTS + " b ON a.eventid = b.id  where a.userid = " + userID;
+            String selectQuery = "SELECT * FROM " +  TABLE_USERPEREVENT + " a inner join " + TABLE_EVENTS + " b ON a.eventid = b.id  where a.userid = " + "\"" + userID + "\"";
 
             SQLiteDatabase db = this.getWritableDatabase();
             Cursor cursor = db.rawQuery(selectQuery, null);
@@ -239,7 +237,7 @@ public class DBHandler extends SQLiteOpenHelper {
         try{
             ArrayList<EventInformation> eventsList = new ArrayList<EventInformation>();
             // Select All Query
-            String selectQuery = "SELECT * FROM " +  TABLE_USERPEREVENT + " a inner join " + TABLE_EVENTS + " b ON a.eventid = b.id  where a.userid = " + userID + " and a.eventid = " + eventID;
+            String selectQuery = "SELECT * FROM " +  TABLE_USERPEREVENT + " a inner join " + TABLE_EVENTS + " b ON a.eventid = b.id  where a.userid = " + "\"" + userID + "\"" + " and a.eventid = " + eventID;
 
             SQLiteDatabase db = this.getWritableDatabase();
             Cursor cursor = db.rawQuery(selectQuery, null);
@@ -273,7 +271,7 @@ public class DBHandler extends SQLiteOpenHelper {
     public void delete_byID(String userID, int eventID){
         try{
             SQLiteDatabase db = this.getReadableDatabase();
-            db.execSQL("delete from "+ TABLE_USERPEREVENT + " WHERE " + KEY_USERPEREVENT_EVENT + " = " + eventID + " and " + KEY_USERPEREVENT_USER + " = " + userID);
+            db.execSQL("delete from "+ TABLE_USERPEREVENT + " WHERE " + KEY_USERPEREVENT_EVENT + " = " + eventID + " and " + KEY_USERPEREVENT_USER + " = " + "\"" + userID + "\"");
         }catch (Exception e){
         }
     }
