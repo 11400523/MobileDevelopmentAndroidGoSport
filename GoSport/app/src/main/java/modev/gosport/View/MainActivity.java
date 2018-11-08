@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
     }
-
+    final DBHandler db = new DBHandler(this);
     private class AsyncTaskRunner extends AsyncTask<String, String, String> {
 
         private String resp;
@@ -111,8 +111,9 @@ public class MainActivity extends AppCompatActivity {
                         }
                         if (selectedUser != null){
                             String id = selectedUser.getId();
-                            Intent intent = new Intent(MainActivity.this, HomeActivity.class);
-                            intent.putExtra("user", selectedUser.getId());
+
+                            db.addUser(id);
+                            Intent intent = new Intent(MainActivity.this, ListEventsActivity.class);
                             startActivity(intent);
                         }
                     }

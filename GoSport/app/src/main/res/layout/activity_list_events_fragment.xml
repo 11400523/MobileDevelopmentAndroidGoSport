@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".View.ListFragment">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+                <Button
+                    android:id="@+id/makeEventButton"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/editText_height"
+                    android:layout_alignParentLeft="true"
+                    android:layout_gravity="center"
+                    android:text="Make a new event"
+                    android:background="@drawable/rounded_button"
+                    android:layout_marginBottom="@dimen/editText_margin"/>
+
+                <ListView
+                    android:id="@+id/listViewExample"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@id/makeEventButton"
+                    />
+        </RelativeLayout>
+</android.support.constraint.ConstraintLayout>

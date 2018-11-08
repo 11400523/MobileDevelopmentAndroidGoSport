@@ -12,6 +12,7 @@ import android.widget.CalendarView;
 
 import modev.gosport.Adapter.ViewPagerAdapter;
 import modev.gosport.R;
+import modev.gosport.SqlLite.DBHandler;
 
 public class CalendarEventsActivity extends AppCompatActivity {
     String userID;
@@ -25,8 +26,8 @@ public class CalendarEventsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.calendar_main);
 
-
-        userID = getIntent().getExtras().getString("user");
+        DBHandler db = new DBHandler(this);
+        userID = db.getUserID();
         BottomNavigationView bottomNavigationView = (BottomNavigationView)
                 findViewById(R.id.bottom_navigation);
         //calendarView = (CalendarView) findViewById(R.id.calendarView);
@@ -39,13 +40,11 @@ public class CalendarEventsActivity extends AppCompatActivity {
                             case R.id.action_calendar:
                                 break;
                             case R.id.action_events:
-                                Intent intent = new Intent(CalendarEventsActivity.this, HomeActivity.class);
-                                intent.putExtra("user", userID);
+                                Intent intent = new Intent(CalendarEventsActivity.this, ListEventsActivity.class);
                                 startActivity(intent);
                                 break;
                             case R.id.action_profile:
                                 intent = new Intent(CalendarEventsActivity.this, ProfileActivity.class);
-                                intent.putExtra("user", userID);
                                 startActivity(intent);
                                 break;
                         }

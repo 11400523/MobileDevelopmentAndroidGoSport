@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".View.DetailFragment"
+    android:background="@color/achtergrond">
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <RelativeLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <TextView
+                android:id="@+id/titleTextView"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textSize="40sp"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:layout_marginBottom="30dp"
+                android:text="The name of this event"/>
+
+
+            <TextView
+                android:id="@+id/locationTextView"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:gravity="center_vertical"
+                android:textColor="@color/white"
+                android:layout_marginBottom="30dp"
+                android:layout_below="@id/titleTextView"
+                android:text="Where is this event?"/>
+
+            <TextView
+                android:id="@+id/dateTextView"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:gravity="center_vertical"
+                android:textColor="@color/white"
+                android:layout_marginBottom="30dp"
+                android:layout_below="@id/locationTextView"
+                android:text="When is this event planned?"/>
+
+
+
+            <TextView
+                android:id="@+id/infoTextView"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:gravity="center_vertical"
+                android:textColor="@color/white"
+                android:layout_marginBottom="30dp"
+                android:layout_below="@id/dateTextView"
+                android:text="More information about the event"/>
+
+            <CheckBox
+                android:id="@+id/chkIos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:layout_below="@id/infoTextView"
+                android:buttonTint="@color/white"
+                android:text="Are you going?"/>
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+
+</android.support.design.widget.CoordinatorLayout>

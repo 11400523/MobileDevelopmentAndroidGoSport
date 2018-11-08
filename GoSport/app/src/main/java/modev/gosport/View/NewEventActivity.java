@@ -32,15 +32,14 @@ public class NewEventActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.new_event_main);
 
-        userID = getIntent().getExtras().getString("user");
+        final DBHandler db = new DBHandler(this);
+        userID = db.getUserID();
 
         btnSave = (Button) findViewById(R.id.registerButton);
         btnDate = (Button) findViewById(R.id.dateButton);
         txtEventName = (EditText) findViewById(R.id.edittextEventName);
         txtLocation = (EditText) findViewById(R.id.edittextLocation);
         txtInfo = (EditText) findViewById(R.id.edittextInfo);
-
-        final DBHandler db = new DBHandler(this);
 
         btnSave.setOnClickListener(
                 new View.OnClickListener() {
@@ -51,8 +50,7 @@ public class NewEventActivity extends AppCompatActivity {
                         createEvent.setHour(0);
                         createEvent.setMinute(0);
                         db.addEvent(createEvent);
-                        Intent intent = new Intent(NewEventActivity.this, HomeActivity.class);
-                        intent.putExtra("user", userID);
+                        Intent intent = new Intent(NewEventActivity.this, ListEventsActivity.class);
                         startActivity(intent);
                     }
                 });

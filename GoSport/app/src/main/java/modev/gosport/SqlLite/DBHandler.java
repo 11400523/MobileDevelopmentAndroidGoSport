@@ -9,18 +9,21 @@ import android.database.sqlite.SQLiteOpenHelper;
 import java.util.ArrayList;
 
 import modev.gosport.Class.EventInformation;
+import modev.gosport.Class.RegisterUser;
 
 
 public class DBHandler extends SQLiteOpenHelper {
 
     // Database Version
-    private static final int DATABASE_VERSION = 8;
+    private static final int DATABASE_VERSION = 9;
 
     // Database Name
     private static final String DATABASE_NAME = "goSport";
 
+
     // Contacts table name
     private static final String TABLE_EVENTS = "events";
+    private static final String TABLE_USER = "users";
     private static final String TABLE_USERPEREVENT = "userperevent";
 
     // Events Table Columns names
@@ -33,6 +36,9 @@ public class DBHandler extends SQLiteOpenHelper {
     private static final String KEY_EVENTS_DAY = "day";
     private static final String KEY_EVENTS_HOUR = "hour";
     private static final String KEY_EVENTS_MINUTE = "minute";
+
+    private static final String KEY_USER_ID = "id";
+    private static final String KEY_USER_USER = "userid";
 
     // UserPerEvent Table Columns names
     private static final String KEY_USERPEREVENT_ID = "id";
@@ -56,6 +62,10 @@ public class DBHandler extends SQLiteOpenHelper {
                 + KEY_USERPEREVENT_ID + " INTEGER PRIMARY KEY," + KEY_USERPEREVENT_EVENT + " INTEGER,"
                 + KEY_USERPEREVENT_USER + " TEXT" + ")";
         db.execSQL(CREATE_USEREVENT_TABLE);
+        String CREATE_USER_TABLE = "CREATE TABLE " + TABLE_USER + "("
+                + KEY_USER_ID + " INTEGER PRIMARY KEY,"
+                + KEY_USER_USER + " TEXT" + ")";
+        db.execSQL(CREATE_USER_TABLE);
     }
 
     @Override
@@ -63,9 +73,49 @@ public class DBHandler extends SQLiteOpenHelper {
         // Drop older table if existed
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_EVENTS);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_USERPEREVENT);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_USER);
         // Creating tables again
         onCreate(db);
     }
+
+    // Adding new user
+    public void addUser(String user) {
+        try{
+            SQLiteDatabase db = this.getWritableDatabase();
+
+            ContentValues values = new ContentValues();
+            values.put(KEY_USER_USER, user);
+
+            // Inserting Row
+            db.insert(TABLE_USER, null, values);
+            db.close(); // Closing database connection
+        }catch (Exception e){
+
+        }
+    }
+
+    public String getUserID (){
+        ArrayList<RegisterUser> usersList = new ArrayList<RegisterUser>();
+        // Select All Query
+        String selectQuery = "SELECT  * FROM " + TABLE_USER;
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                RegisterUser user = new RegisterUser();
+                user.setId(cursor.getString(1));
+                usersList.add(user);
+            } while (cursor.moveToNext());
+        }
+
+        // return userList
+        RegisterUser userid = usersList.get(usersList.size()-1);
+        return userid.getId();
+    }
+
 
     // Adding new event
     public void addEvent(EventInformation event) {

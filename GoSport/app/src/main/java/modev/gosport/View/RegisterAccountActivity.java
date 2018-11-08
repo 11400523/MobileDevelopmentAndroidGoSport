@@ -15,6 +15,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import modev.gosport.Class.Dialog;
 import modev.gosport.Class.RegisterUser;
 import modev.gosport.R;
+import modev.gosport.SqlLite.DBHandler;
 
 
 public class RegisterAccountActivity extends AppCompatActivity {
@@ -43,7 +44,7 @@ public class RegisterAccountActivity extends AppCompatActivity {
                     }
                 });
     }
-
+    final DBHandler db = new DBHandler(this);
     private class AsyncTaskRunner extends AsyncTask<String, String, String> {
 
         private String resp;
@@ -71,8 +72,8 @@ public class RegisterAccountActivity extends AppCompatActivity {
                 user.setId(id);
                 databaseArtist.child(id).setValue(user);
 
-                Intent intent = new Intent(RegisterAccountActivity.this, HomeActivity.class);
-                intent.putExtra("user", id);
+                db.addUser(id);
+                Intent intent = new Intent(RegisterAccountActivity.this, ListEventsActivity.class);
                 startActivity(intent);
             } catch (Exception e) {
                 e.printStackTrace();

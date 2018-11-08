@@ -39,8 +39,8 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.profile_main);
 
-        userID = getIntent().getExtras().getString("user");
         final DBHandler db = new DBHandler(this);
+        userID = db.getUserID();
 
         btnRegister = (Button) findViewById(R.id.registerButton);
         txtFirstname = (EditText) findViewById(R.id.edittextFirstname);
@@ -61,12 +61,10 @@ public class ProfileActivity extends AppCompatActivity {
                         switch (item.getItemId()) {
                             case R.id.action_calendar:
                                 Intent intent = new Intent(ProfileActivity.this, CalendarEventsActivity.class);
-                                intent.putExtra("user", userID);
                                 startActivity(intent);
                                 break;
                             case R.id.action_events:
-                                intent = new Intent(ProfileActivity.this, HomeActivity.class);
-                                intent.putExtra("user", userID);
+                                intent = new Intent(ProfileActivity.this, ListEventsActivity.class);
                                 startActivity(intent);
                                 break;
                             case R.id.action_profile:
