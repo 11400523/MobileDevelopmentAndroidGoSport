@@ -31,10 +31,10 @@
         app:compactCalendarShouldSelectFirstDayOfMonthOnScroll="true"
         android:layout_below="@id/monthyearTextView"/>
 
-        <ListView
+        <android.support.v7.widget.RecyclerView
             android:id="@+id/bookings_listview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/compactcalendar_view">
-        </ListView>
+        </android.support.v7.widget.RecyclerView>
 </RelativeLayout>

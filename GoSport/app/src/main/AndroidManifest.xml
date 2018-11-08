@@ -22,7 +22,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".View.RegisterAccountActivity" />
-        <activity android:name=".View.CalendarEventsActivity" />
+        <activity
+            android:name=".View.CalendarEventsActivity"/>
         <activity android:name=".View.ProfileActivity" />
         <activity android:name=".View.NewEventActivity" />
         <activity android:name=".View.DetailActivity"/>

@@ -7,6 +7,7 @@ public class Event {
     private int color;
     private long timeInMillis;
     private Object data;
+    private int id;
 
     public Event(){}
     public Event(int color, long timeInMillis) {
@@ -20,9 +21,18 @@ public class Event {
         this.data = data;
     }
 
+    public Event(int color, long timeInMillis, Object data, int id) {
+        this.color = color;
+        this.timeInMillis = timeInMillis;
+        this.data = data;
+        this.id = id;
+    }
+
     public int getColor() {
         return color;
     }
+
+    public int getId(){return id;}
 
     public long getTimeInMillis() {
         return timeInMillis;

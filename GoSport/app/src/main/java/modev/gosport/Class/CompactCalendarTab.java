@@ -6,11 +6,11 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
@@ -23,6 +23,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
 
+import modev.gosport.Adapter.CalendarItemsAdapter;
 import modev.gosport.R;
 import modev.gosport.SqlLite.DBHandler;
 import modev.librarycalendar.CompactCalendarView;
@@ -47,28 +48,15 @@ public class CompactCalendarTab extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View mainTabView = inflater.inflate(R.layout.main_tab,container,false);
+        final View mainTabView = inflater.inflate(R.layout.main_tab,container,false);
 
-        final List<String> mutableBookings = new ArrayList<>();
+        final List<Event> mutableBookings = new ArrayList<>();
 
-        final ListView bookingsListView = mainTabView.findViewById(R.id.bookings_listview);
-
-        final ArrayAdapter adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, mutableBookings){
-
-            @Override
-            public View getView(int position, View convertView, ViewGroup parent) {
-                View view =super.getView(position, convertView, parent);
-
-                TextView textView=(TextView) view.findViewById(android.R.id.text1);
-
-                /*YOUR CHOICE OF COLOR*/
-                textView.setTextColor(Color.WHITE);
-
-                return view;
-            }
-        };
-
-        bookingsListView.setAdapter(adapter);
+        RecyclerView mRecyclerView = mainTabView.findViewById(R.id.bookings_listview);
+        final CalendarItemsAdapter mAdapter;
+        mAdapter = new CalendarItemsAdapter(mutableBookings);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mRecyclerView.setAdapter(mAdapter);
         compactCalendarView = mainTabView.findViewById(R.id.compactcalendar_view);
 
         // below allows you to configure color for the current day in the month
@@ -108,11 +96,10 @@ public class CompactCalendarTab extends Fragment {
                 if (bookingsFromMap != null) {
                     mutableBookings.clear();
                     for (Event booking : bookingsFromMap) {
-                        mutableBookings.add((String) booking.getData());
+                        mutableBookings.add(booking);
                     }
-                    adapter.notifyDataSetChanged();
+                    mAdapter.notifyDataSetChanged();
                 }
-
             }
 
             @Override
@@ -195,21 +182,21 @@ public class CompactCalendarTab extends Fragment {
 
     private List<Event> getEvents(ArrayList<EventInformation> events) {
         if( events.size() == 1){
-                return Arrays.asList(new Event(Color.argb(255, 169, 68, 65), events.get(0).getTimeInMillis(), events.get(0).getEventName() + " " + dateFormatForDisplaying.format(new Date(events.get(0).getTimeInMillis()))));
+                return Arrays.asList(new Event(Color.argb(255, 169, 68, 65), events.get(0).getTimeInMillis(), events.get(0).getEventName() + " " + dateFormatForDisplaying.format(new Date(events.get(0).getTimeInMillis())), events.get(0).getId()));
         } else if (events.size() == 2){
             return Arrays.asList(
-                    new Event(Color.argb(255, 169, 68, 65), events.get(0).getTimeInMillis(), events.get(0).getEventName() + " " + dateFormatForDisplaying.format(new Date(events.get(0).getTimeInMillis()))),
-                    new Event(Color.argb(255, 100, 68, 65), events.get(1).getTimeInMillis(), events.get(1).getEventName() + " " + dateFormatForDisplaying.format(new Date(events.get(1).getTimeInMillis()))));
+                    new Event(Color.argb(255, 169, 68, 65), events.get(0).getTimeInMillis(), events.get(0).getEventName() + " " + dateFormatForDisplaying.format(new Date(events.get(0).getTimeInMillis())), events.get(0).getId()),
+                    new Event(Color.argb(255, 100, 68, 65), events.get(1).getTimeInMillis(), events.get(1).getEventName() + " " + dateFormatForDisplaying.format(new Date(events.get(1).getTimeInMillis())), events.get(1).getId()));
         }else {
             List<Event> list = new ArrayList<Event>();
             int count = 0;
             for (EventInformation e: events) {
                 if (list.size() == 0){
-                    list.add(new Event(Color.argb(255, 169, 68, 65), e.getTimeInMillis(), e.getEventName() + " " + dateFormatForDisplaying.format(new Date(e.getTimeInMillis()))));
+                    list.add(new Event(Color.argb(255, 169, 68, 65), e.getTimeInMillis(), e.getEventName() + " " + dateFormatForDisplaying.format(new Date(e.getTimeInMillis())), e.getId()));
                 } else if (list.size() == 1){
-                    list.add(new Event(Color.argb(255, 100, 68, 65), e.getTimeInMillis(), e.getEventName() + " " + dateFormatForDisplaying.format(new Date(e.getTimeInMillis()))));
+                    list.add(new Event(Color.argb(255, 100, 68, 65), e.getTimeInMillis(), e.getEventName() + " " + dateFormatForDisplaying.format(new Date(e.getTimeInMillis())), e.getId()));
                 } else{
-                    list.add(new Event(Color.argb(255, 70, 68, 65), e.getTimeInMillis(), e.getEventName() + " " + dateFormatForDisplaying.format(new Date(e.getTimeInMillis()))));
+                    list.add(new Event(Color.argb(255, 70, 68, 65), e.getTimeInMillis(), e.getEventName() + " " + dateFormatForDisplaying.format(new Date(e.getTimeInMillis())), e.getId()));
                 }
                 count++;
             }
