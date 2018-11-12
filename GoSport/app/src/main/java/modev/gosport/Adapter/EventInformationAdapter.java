@@ -46,7 +46,7 @@ public class EventInformationAdapter extends ArrayAdapter<EventInformation> impl
         if (mContext != null) {
             if (fragmentManager != null) {
                 DetailFragment detailFragment = (DetailFragment) fragmentManager.findFragmentById(R.id.detail);
-                if (detailFragment != null) {
+                if (detailFragment != null && detailFragment.isVisible()) {
                     // Visible: send bundle
                 DetailFragment newFragment = new DetailFragment();
                 Bundle bundle=new Bundle();
